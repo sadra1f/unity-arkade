@@ -70,37 +70,23 @@ public class PlacementIndicator : MonoBehaviour
             // }
         }
         
-        TouchTest();
+        if (Input.GetMouseButtonUp(0))
+        {
+            // Ray ray = ARCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = ARCamera.ScreenPointToRay(ARCamera.transform.position);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                // text = hit.transform.tag;
+                text =  string.Format("{0}, {1}, {2}",
+                    hit.transform.position.x, hit.transform.position.y, hit.transform.position.z);
+            }
+        }
     }
 
     public void ChangeState()
     {
         fixedPos = !fixedPos;
-    }
-
-    private void TouchTest()
-    {
-        RaycastHit hit; 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-        if (Physics.Raycast (ray, out hit))
-        {
-            text = string.Format("{0}: {1}, {2}, {3} \n",
-                hit.collider.tag, hit.point.x, hit.point.y, hit.point.z);
-        }
-
-
-
-        // List<ARRaycastHit> hits = new List<ARRaycastHit>();
-        // rayManager.Raycast(new Vector2(Input.mousePosition.x, Input.mousePosition.y), hits, TrackableType.All);
-        
-        // if (hits.Count > 0)
-        // {
-        //     text = "";
-        //     foreach (ARRaycastHit hit in hits)
-        //     {
-        //         text +=  string.Format("{0}: {1}, {2}, {3} \n",
-        //             hit.GetType(), hit.pose.position.x, hit.pose.position.y, hit.pose.position.z);
-        //     }
-        // }
     }
 }
