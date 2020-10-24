@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5171ba30379e8444b94cbec5015fdfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ARCamera: {fileID: 0}
+  ARCamera: {fileID: 921491848}
   placement: {fileID: 748293687}
   obj: {fileID: 572538046}
   Text: {fileID: 178112932}

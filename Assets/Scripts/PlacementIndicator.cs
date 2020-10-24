@@ -17,16 +17,16 @@ public class PlacementIndicator : MonoBehaviour
 
     [SerializeField] GameObject Text;
 
-    private bool fixedPos = false;
+    private bool placeObject = false;
 
     private string text = "";
 
     void Start()
     {
-        // get the components
+        // Get the components
         rayManager = FindObjectOfType<ARRaycastManager>();
         
-        // hide the placement indicator visual
+        // Hide the placement indicator visual
         placement.SetActive(false);
         obj.SetActive(false);
     }
@@ -36,57 +36,55 @@ public class PlacementIndicator : MonoBehaviour
         Text.GetComponent<Text>().text = text;
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-        if (!fixedPos)
+        if (!placeObject)
         {
-            // shoot a raycast from the center of the screen
-            rayManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
+            // Shoot a raycast from the center of the screen
+            rayManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2),
+                hits,
+                TrackableType.Planes
+            );
+            
+            // Hide the gameobject in the hierarchy and show the placement indicator
             obj.SetActive(false);
             placement.SetActive(true);
         }
         else
         {
-            // shoot a raycast from the pointer position
-            // rayManager.Raycast(new Vector2(Input.mousePosition.x, Input.mousePosition.y), hits, TrackableType.Planes);
+            // Activate the gameobject we want to display in the hierarchy
+            // and hide the placement indicator
             obj.SetActive(true);
             placement.SetActive(false);
         }
 
-        // if we hit an AR plane surface, update the position and rotation
+        // If we hit an AR plane surface, update the position and rotation
         if(hits.Count > 0)
         {
             transform.position = hits[0].pose.position;
             transform.rotation = hits[0].pose.rotation;
-
-            // enable the visual if it's disabled
-            // if(!placement.activeInHierarchy && !fixedPos)
-            // {
-            //     obj.SetActive(false);
-            //     placement.SetActive(true);
-            // }
-            // else if (fixedPos)
-            // {
-            //     obj.SetActive(true);
-            //     placement.SetActive(false);
-            // }
         }
         
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            // Ray ray = ARCamera.ScreenPointToRay(Input.mousePosition);
-            Ray ray = ARCamera.ScreenPointToRay(ARCamera.transform.position);
+            text = "Clicked" + '\n';
 
+            // Create a ray from mouse/touch position
+            Ray ray = ARCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                // text = hit.transform.tag;
-                text =  string.Format("{0}, {1}, {2}",
-                    hit.transform.position.x, hit.transform.position.y, hit.transform.position.z);
+                // Display selected gameobject tag and position
+                text += "Tag: " + hit.transform.tag + '\n';
+                text +=  string.Format("{0}, {1}, {2}",
+                    hit.transform.position.x,
+                    hit.transform.position.y,
+                    hit.transform.position.z
+                );
             }
         }
     }
 
     public void ChangeState()
     {
-        fixedPos = !fixedPos;
+        placeObject = !placeObject;
     }
 }
