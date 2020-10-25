@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 9211683321445860613}
   m_Layer: 0
   m_Name: HouseObject
-  m_TagString: Obj
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -72,12 +72,12 @@ public class PlacementIndicator : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                // Display selected gameobject tag and position
+                // Display selected gameobject tag and the impact position
                 text += "Tag: " + hit.transform.tag + '\n';
                 text +=  string.Format("{0}, {1}, {2}",
-                    hit.transform.position.x,
-                    hit.transform.position.y,
-                    hit.transform.position.z
+                    hit.point.x,
+                    hit.point.y,
+                    hit.point.z
                 );
             }
         }
