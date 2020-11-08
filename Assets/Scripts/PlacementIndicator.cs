@@ -12,7 +12,8 @@ public class PlacementIndicator : MonoBehaviour
 
     [SerializeField] Camera ARCamera;
 
-    [SerializeField] GameObject placement;
+    [SerializeField] List<GameObject> HideAfterClick;
+    [SerializeField] List<GameObject> HideBeforeClick;
     [SerializeField] GameObject obj;
 
     [SerializeField] GameObject Text;
@@ -27,8 +28,8 @@ public class PlacementIndicator : MonoBehaviour
         rayManager = FindObjectOfType<ARRaycastManager>();
         
         // Hide the placement indicator visual
-        placement.SetActive(false);
-        obj.SetActive(false);
+        SetActiveList(HideAfterClick, false);
+        SetActiveList(HideBeforeClick, false);
     }
 
     void Update()
@@ -45,15 +46,15 @@ public class PlacementIndicator : MonoBehaviour
             );
             
             // Hide the gameobject in the hierarchy and show the placement indicator
-            obj.SetActive(false);
-            placement.SetActive(true);
+            SetActiveList(HideAfterClick, true);
+            SetActiveList(HideBeforeClick, false);
         }
         else
         {
             // Activate the gameobject we want to display in the hierarchy
             // and hide the placement indicator
-            obj.SetActive(true);
-            placement.SetActive(false);
+            SetActiveList(HideAfterClick, false);
+            SetActiveList(HideBeforeClick, true);
         }
 
         // If we hit an AR plane surface, update the position and rotation
@@ -80,6 +81,14 @@ public class PlacementIndicator : MonoBehaviour
                     hit.point.z
                 );
             }
+        }
+    }
+
+    private void SetActiveList(List<GameObject> objects, bool active)
+    {
+        foreach (GameObject obj in objects)
+        {
+            obj.SetActive(active);
         }
     }
 

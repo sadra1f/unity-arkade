@@ -1023,6 +1023,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6792174742702602698, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
         type: 3}
+      propertyPath: HideAfterClick.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792174742702602698, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
+        type: 3}
+      propertyPath: HideBeforeClick.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792174742702602698, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
+        type: 3}
       propertyPath: obj
       value: 
       objectReference: {fileID: 572538046}
@@ -1036,6 +1046,16 @@ PrefabInstance:
       propertyPath: ARCamera
       value: 
       objectReference: {fileID: 921491848}
+    - target: {fileID: 6792174742702602698, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
+        type: 3}
+      propertyPath: HideAfterClick.Array.data[0]
+      value: 
+      objectReference: {fileID: 1657380574}
+    - target: {fileID: 6792174742702602698, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
+        type: 3}
+      propertyPath: HideBeforeClick.Array.data[0]
+      value: 
+      objectReference: {fileID: 572538046}
     - target: {fileID: 6792174742702602699, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1096,6 +1116,12 @@ PrefabInstance:
 --- !u!4 &1657380573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6792174742702602699, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
+    type: 3}
+  m_PrefabInstance: {fileID: 1657380572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1657380574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1909035525372261073, guid: 1f0b9fee4b1df2a4ea64b79b9f594cfe,
     type: 3}
   m_PrefabInstance: {fileID: 1657380572}
   m_PrefabAsset: {fileID: 0}
